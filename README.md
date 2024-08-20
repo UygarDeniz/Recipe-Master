@@ -2,7 +2,7 @@
 
 Recipe Master is a web application for managing and sharing your favorite recipes. Recipe Master allows users to create, browse, and manage their own recipe collections, including searching, filtering by category, and liking recipes.
 
-# 🚀 Features
+# Features
 
 - User Authentication: Secure login and registration using NextAuth v5.
 - Recipe Management: Users can create, edit, and delete recipes.

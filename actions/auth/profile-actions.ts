@@ -15,7 +15,9 @@ const UpdateEmailSchema = z.object({
 
 const UpdatePasswordSchema = z.object({
   currentPassword: z.string(),
-  newPassword: z.string().min(MIN_PASSWORD_LENGTH),
+  newPassword: z.string().min(MIN_PASSWORD_LENGTH, {
+    message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`,
+  }),
   confirmNewPassword: z.string(),
 });
 
@@ -24,7 +26,8 @@ export async function updateName(formData: FormData) {
 
   const validatedData = UpdateNameSchema.safeParse({
     name: formData.get('name') as string,
-  }); console.log(validatedData);
+  });
+  console.log(validatedData);
 
   if (!validatedData.success) {
     return {
@@ -44,6 +47,7 @@ export async function updateName(formData: FormData) {
 
     revalidatePath('/profile');
     return {
+      newName: updated.name,
       message: 'Name updated successfully!',
     };
   } catch (error) {
@@ -67,7 +71,18 @@ export async function updateEmail(formData: FormData) {
   }
 
   try {
-    await prisma.user.update({
+    const foundUser = await prisma.user.findUnique({
+      where: {
+        email: validatedData.data.email,
+      },
+    });
+    if (foundUser) {
+      return {
+        message: 'Email already in use!',
+      };
+    }
+
+    const updatedUser = await prisma.user.update({
       where: {
         id: user.id,
       },
@@ -75,8 +90,10 @@ export async function updateEmail(formData: FormData) {
         email: validatedData.data.email,
       },
     });
+
     revalidatePath('/profile');
     return {
+      newEmail: updatedUser.email,
       message: 'Email updated successfully!',
     };
   } catch (error) {
@@ -88,14 +105,14 @@ export async function updateEmail(formData: FormData) {
 
 export async function updatePassword(formData: FormData) {
   const validatedData = UpdatePasswordSchema.safeParse({
-    password: formData.get('password') as string,
+    currentPassword: formData.get('currentPassword') as string,
     newPassword: formData.get('newPassword') as string,
     confirmNewPassword: formData.get('confirmNewPassword') as string,
   });
   const user = await assertAuthenticated();
   if (!validatedData.success) {
     return {
-      message: 'Invalid password!',
+      message: validatedData.error.errors[0].message,
     };
   }
   const { currentPassword, newPassword, confirmNewPassword } =

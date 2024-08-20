@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Providers from '@/providers/Providers';
 import Header from '@/components/Header';
-import { Toaster } from 'sonner'
+import { Toaster } from 'sonner';
 import './globals.css';
+import { AOSInit } from '@/components/Aos';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,8 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <AOSInit />
       <body className={inter.className}>
-        <Toaster richColors position='top-right' toastOptions={{classNames:{ toast: "text-lg"}}}/>
+        <Toaster
+          richColors
+          position='top-right'
+          toastOptions={{ classNames: { toast: 'text-lg' } }}
+        />
         <Providers>
           <Header />
           {children}

@@ -25,7 +25,7 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="text-md md:text-xl">
+    <div className="text-sm md:text-xl">
       <label
         htmlFor="category"
         className="block font-medium text-gray-700 dark:text-gray-300"

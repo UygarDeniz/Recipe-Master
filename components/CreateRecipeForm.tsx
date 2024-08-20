@@ -56,7 +56,7 @@ function CreateRecipeForm() {
           type='text'
           id='title'
           name='title'
-          className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white '
+          className='mt-1 block w-full p-2 border border-gray-300 focus:outline-orange-500 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white '
           maxLength={50}
         />
       </div>
@@ -72,7 +72,7 @@ function CreateRecipeForm() {
         <textarea
           id='description'
           name='description'
-          className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-400 dark:focus:border-orange-400'
+          className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-orange-500  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
           rows={4}
           maxLength={200}
         />

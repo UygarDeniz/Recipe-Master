@@ -2,13 +2,15 @@
 import FormButton from './FormButton';
 import { toast } from 'sonner';
 import { updateName } from '@/actions/auth/profile-actions';
+import { useSession } from 'next-auth/react';
 function NameUpdateForm({ name }: { name: string }) {
-  
+  const { update } = useSession();
   const handleSubmit = async (formData: FormData) => {
     try {
       const response = await updateName(formData);
       if (response?.message === 'Name updated successfully!') {
         toast.success(response.message);
+        update({name: response.newName});
       } else {
         toast.error(response?.message);
       }
@@ -28,7 +30,7 @@ function NameUpdateForm({ name }: { name: string }) {
             type='text'
             name='name'
             required
-            className='border py-3 px-4 border-gray-300 focus:outline-orange-500 rounded-xl'
+            className='border py-3 px-4 border-gray-300 focus:outline-orange-500 rounded-xl dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600'
             defaultValue={name}
           />
         </div>

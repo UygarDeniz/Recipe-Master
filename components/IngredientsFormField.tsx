@@ -65,7 +65,7 @@ function IngredientsFormField({
               onChange={(e) =>
                 handleIngredientChange(index, 'name', e.target.value)
               }
-              className='w-full border rounded-md p-2 mr-4 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:border-gray-600'
+              className='w-full border rounded-md focus:outline-orange-500 p-2 mr-4 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:border-gray-600'
             />
             <label className='sr-only' htmlFor={`ingredient-${index}-quantity`}>
               Quantity
@@ -78,7 +78,7 @@ function IngredientsFormField({
               onChange={(e) =>
                 handleIngredientChange(index, 'quantity', e.target.value)
               }
-              className='border rounded-md p-2 mr-4 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:border-gray-600'
+              className='border rounded-md p-2 mr-4 focus:outline-orange-500 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:border-gray-600'
             />
             <button type='button' onClick={() => removeIngredient(index)}>
               <CircleMinus color='#ed0c0c' />

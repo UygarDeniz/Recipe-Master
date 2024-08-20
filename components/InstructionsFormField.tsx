@@ -72,7 +72,7 @@ export default function InstructionForm({
             id={`instruction-${index}`}
             value={instruction.text}
             onChange={(e) => handleInstructionChange(index, e.target.value)}
-            className='w-full border rounded-md p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  dark:focus:border-orange-400'
+            className='w-full  focus:outline-orange-500 border rounded-md p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  dark:focus:border-orange-400'
             rows={3}
             maxLength={200}
           ></textarea>

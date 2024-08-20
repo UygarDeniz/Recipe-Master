@@ -3,14 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Recipe } from '@prisma/client';
 import RecipeCategory from './RecipeCategory';
-import LikeButton from './LikeButton';
 
 type RecipeCardProps = {
   recipe: Recipe & {
     user: {
       name: string | null;
     };
-    likes: number;
   };
 };
 

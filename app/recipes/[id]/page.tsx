@@ -31,7 +31,7 @@ export default async function RecipePage({
   return (
     <div className='bg-primary dark:bg-gray-900 min-h-screen flex items-center justify-center py-5'>
       <article className='bg-white dark:bg-gray-800 rounded-lg shadow-lg break-all mx-10 lg:max-w-[70%] xl:max-w-[50%] w-full p-8'>
-        <RecipeImage title={recipe.title} src={'/sucuk.jpg'} />
+        <RecipeImage title={recipe.title} src={recipe?.image || "/default.jpg"} />
 
         <div className='flex justify-between items-center mb-2 mt-6'>
           <RecipeCategory category={recipe.category} />

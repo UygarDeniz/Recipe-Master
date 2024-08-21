@@ -1,6 +1,9 @@
 import { Suspense } from 'react';
 import { assertAuthenticated } from '@/lib/session';
-import { getTotalLikedRecipePages, getTotalRecipePages } from '@/data-access/recipes';
+import {
+  getTotalLikedRecipePages,
+  getTotalRecipePages,
+} from '@/data-access/recipes';
 import { z } from 'zod';
 import RecipeList from '@/components/RecipeList';
 import Loading from '@/components/Loading';
@@ -32,7 +35,7 @@ export default async function LikedRecipes({
   const totalPages = await getTotalLikedRecipePages(
     user.id,
     query,
-    selectedCategory,
+    selectedCategory
   );
   return (
     <div className='min-h-screen py-10 bg-primary dark:bg-gray-900'>
@@ -41,11 +44,11 @@ export default async function LikedRecipes({
           My Recipes
         </h1>
         <div className='flex justify-between items-end mb-6'>
-          <Search query={query} />
-          <CategoryFilter selectedCategory={selectedCategory} />
+          <Search />
+          <CategoryFilter />
         </div>
 
-        <Suspense key={selectedCategory + query} fallback={<Loading />}>
+        <Suspense key={selectedCategory + query + currentPage} fallback={<Loading />}>
           <LikedRecipeList
             currentPage={currentPage}
             category={selectedCategory}

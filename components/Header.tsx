@@ -9,7 +9,7 @@ const pasifico = Pacifico({ weight: '400', subsets: ['cyrillic-ext'] });
 function Header() {
   return (
     <header className='border-b py-4 bg-white dark:bg-gray-900 dark:border-gray-700'>
-      <div className='container mx-auto flex flex-col items-center justify-between px-4 sm:flex-row'>
+      <div className='container mx-auto flex flex-col items-center justify-between lg:px-4 sm:flex-row'>
         <Link
           href='/'
           className={cn(
@@ -19,7 +19,7 @@ function Header() {
         >
           Recipe Master
         </Link>
-        <nav className='flex  justify-center space-x-4 font-semibold text-lg text-gray-900 dark:text-gray-300 mb-2 sm:mb-0'>
+        <nav className='flex  justify-center items-center space-x-1 md:space-x-4 font-semibold text-lg text-gray-900 dark:text-gray-300 mb-2 sm:mb-0'>
           <Link
             href='/recipes'
             className='hover:text-orange-500 dark:hover:text-orange-400'

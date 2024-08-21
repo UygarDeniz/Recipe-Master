@@ -8,7 +8,7 @@ async function UserMenu() {
 
   if (user) {
     return (
-      <div className='flex items-center space-x-4'>
+      <div className='flex items-center md:space-x-4'>
         <Link href='/profile'>
           <CircleUser size={39} />
         </Link>
@@ -18,10 +18,10 @@ async function UserMenu() {
 
   return (
     <div className='flex space-x-4'>
-      <Button variant='primary' asChild>
+      <Button variant='primary' className='hidden md:block' asChild>
         <Link href='/login'>Log In</Link>
       </Button>
-      <Button variant='secondary' asChild>
+      <Button variant='secondary' asChild className='px-2 md:px-4'>
         <Link href='/sign-up'>Sign Up</Link>
       </Button>
     </div>

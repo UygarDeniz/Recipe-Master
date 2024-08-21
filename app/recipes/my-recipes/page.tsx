@@ -43,8 +43,8 @@ export default async function RecipePage({
 
         <div className='flex justify-between  mb-6 items-end'>
           <div className='flex items-end space-x-6'>
-            <Search query={query} />
-            <CategoryFilter selectedCategory={selectedCategory} />
+            <Search />
+            <CategoryFilter />
           </div>
           <Link
             href='/recipes/my-recipes/liked'

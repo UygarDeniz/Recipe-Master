@@ -1,5 +1,4 @@
 import { getAllFilteredRecipes } from '@/data-access/recipes';
-import React from 'react';
 import RecipeCard from './RecipeCard';
 type RecipeListProps = {
   currentPage: number;
@@ -7,9 +6,18 @@ type RecipeListProps = {
   query: string;
   userId?: string;
 };
-async function RecipeList({ currentPage, category, query, userId }: RecipeListProps) {
-  
-  const recipes = await getAllFilteredRecipes(query, currentPage, category, userId);
+async function RecipeList({
+  currentPage,
+  category,
+  query,
+  userId,
+}: RecipeListProps) {
+  const recipes = await getAllFilteredRecipes(
+    query,
+    currentPage,
+    category,
+    userId
+  );
   return (
     <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 w-full '>
       {recipes.length > 0 ? (

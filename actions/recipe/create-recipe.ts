@@ -13,6 +13,7 @@ export type State = {
     category?: string[];
     ingredients?: string[];
     instructions?: string[];
+    imageURL?: string[];
   };
 };
 
@@ -26,6 +27,7 @@ export async function createRecipe(formData: FormData) {
   const instructions = JSON.parse(
     formData.get('instructions') as string
   ) as Instruction[];
+  const imageURL = formData.get('image-url') as string;
 
   const user = await assertAuthenticated();
 
@@ -36,6 +38,7 @@ export async function createRecipe(formData: FormData) {
       category,
       ingredients,
       instructions,
+      imageURL
     });
 
     if (!validatedData.success) {
@@ -53,6 +56,7 @@ export async function createRecipe(formData: FormData) {
         category: category as RecipeCategory,
         ingredients: { create: ingredients },
         instructions: { create: instructions },
+        image : imageURL
       },
     });
     return {

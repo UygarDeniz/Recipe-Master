@@ -26,7 +26,7 @@ function CreateRecipeForm() {
     try {
       const response = await createRecipe(formData);
       setErrors({ message: response.message, errors: response.errors });
-      if (response.message === 'Recipe created successfully!') {        
+      if (response.message === 'Recipe created successfully!') {
         toast.success(response.message);
         router.push(`/recipes/${response.newRecipeId}`);
       } else {
@@ -98,7 +98,28 @@ function CreateRecipeForm() {
         <FormError message={errors.errors.instructions[0]} />
       )}
       <hr className='my-6 border-gray-300 dark:border-gray-600' />
-
+      <div className='mt-10'>
+        <div className='flex space-x-4 items-center mb-4'>
+          <label
+            htmlFor='image-url'
+            className='block text-xl font-semibold  text-gray-700 dark:text-gray-300'
+          >
+            Image URL
+          </label>
+          <p className='text-gray-500 dark:text-gray-400'>
+            (Image URL must be from images.pexels.com)
+          </p>
+        </div>
+        <input
+          type='text'
+          id='image-url'
+          name='image-url'
+          className='mt-1 block w-full p-2 border border-gray-300 focus:outline-orange-500 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white '
+        />
+        {errors?.errors?.imageURL && (
+          <FormError message={errors.errors.imageURL[0]} />
+        )}
+      </div>
       <div className='mt-10 '>
         <label
           htmlFor='category'

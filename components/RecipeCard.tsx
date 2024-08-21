@@ -18,7 +18,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
       <Link href={`/recipes/${recipe.id}`}>
         <div className='relative'>
           <Image
-            src={recipe.image || '/sucuk.jpg'}
+            src={recipe.image || '/default.jpg'}
             alt={recipe.title}
             width={400}
             height={300}

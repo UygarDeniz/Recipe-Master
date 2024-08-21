@@ -44,7 +44,7 @@ export async function getAllFilteredRecipes(
     category: category ? (category as RecipeCategory) : undefined,
     userId: userId ? userId : undefined,
   };
-
+ 
   try {
     const recipes = await prisma.recipe.findMany({
       where: whereClause,

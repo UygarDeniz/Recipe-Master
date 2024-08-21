@@ -27,5 +27,5 @@ Recipe Master is a web application for managing and sharing your favorite recipe
 - Deployment: Vercel
 
 Todo:
-
+-suspense
 - Add auth with google

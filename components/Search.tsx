@@ -1,30 +1,34 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-function Search({ query }: { query: string }) {
-  const router = useRouter();
+function Search() {
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
   const pathname = usePathname();
-  
-  const handleChange = useDebouncedCallback((query: string) => {
-    const params = new URLSearchParams();
+
+  const handleChange = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
     params.set('page', '1');
-    if (query) {
-      params.set('query', query);
+    if (term) {
+      params.set('query', term);
     } else {
       params.delete('query');
     }
-    
-    router.push(`${pathname}?${params.toString()}`);
-  }, 1000);
+
+    replace(`${pathname}?${params.toString()}`);
+  }, 500);
   return (
     <div>
+      <label htmlFor='query' className='sr-only'>
+        Search recipes
+      </label>
       <input
         type='text'
         name='query'
         placeholder='Search recipes'
-        className="shadow appearance-none border rounded-xl text-lg md:text-xl w-40 md:w-96 py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+        className='shadow appearance-none border rounded-xl text-lg md:text-xl w-40 md:w-96 py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline'
         onChange={(e) => handleChange(e.target.value)}
-        defaultValue={query}
+        defaultValue={searchParams.get('query')?.toString()}
       />
     </div>
   );

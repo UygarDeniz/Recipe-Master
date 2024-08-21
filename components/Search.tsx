@@ -16,7 +16,7 @@ function Search() {
     }
 
     replace(`${pathname}?${params.toString()}`);
-  }, 500);
+  }, 300);
   return (
     <div>
       <label htmlFor='query' className='sr-only'>

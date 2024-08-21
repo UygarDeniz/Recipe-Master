@@ -24,6 +24,7 @@ function Search() {
       </label>
       <input
         type='text'
+        id='query'
         name='query'
         placeholder='Search recipes'
         className='shadow appearance-none border rounded-xl text-lg md:text-xl w-40 md:w-96 py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline'

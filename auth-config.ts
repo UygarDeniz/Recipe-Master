@@ -2,35 +2,38 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { getUserByEmail } from './data-access/users';
 import bycrypt from 'bcryptjs';
-
+import type { NextAuthConfig } from "next-auth"
 const LoginSchema = z.object({
-    email: z.string().email(),
-    password: z.string(),
-  });
-  
- 
-export default { providers: [ Credentials({
-    credentials: {
-      email: {},
-      password: {},
-    },
+  email: z.string().email(),
+  password: z.string(),
+});
 
-    authorize: async (credentials) => {
-      const validatedData = LoginSchema.safeParse(credentials);
+export default {
+  providers: [
+    Credentials({
+      credentials: {
+        email: {},
+        password: {},
+      },
 
-      if (validatedData.success) {
-        const { email, password } = validatedData.data;
+      authorize: async (credentials) => {
+        const validatedData = LoginSchema.safeParse(credentials);
 
-        const foundUser = await getUserByEmail(email);
-        if (!foundUser || !foundUser.password) return null;
+        if (validatedData.success) {
+          const { email, password } = validatedData.data;
 
-        const passwordMatch = await bycrypt.compare(
-          password,
-          foundUser.password
-        );
+          const foundUser = await getUserByEmail(email);
+          if (!foundUser || !foundUser.password) return null;
 
-        if (passwordMatch) return foundUser;
-      }
-      return null;
-    },
-  }),] } 
+          const passwordMatch = await bycrypt.compare(
+            password,
+            foundUser.password
+          );
+
+          if (passwordMatch) return foundUser;
+        }
+        return null;
+      },
+    }),
+  ],
+} satisfies NextAuthConfig;

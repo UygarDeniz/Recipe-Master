@@ -1,7 +1,6 @@
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { getUserByEmail } from './data-access/users';
-import type { NextAuthConfig } from "next-auth"
 import bycrypt from 'bcryptjs';
 
 const LoginSchema = z.object({
@@ -34,4 +33,4 @@ export default { providers: [ Credentials({
       }
       return null;
     },
-  }),] } satisfies NextAuthConfig
+  }),] } 

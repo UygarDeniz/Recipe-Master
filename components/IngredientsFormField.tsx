@@ -80,7 +80,7 @@ function IngredientsFormField({
               }
               className='border rounded-md p-2 mr-4 focus:outline-orange-500 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:border-gray-600'
             />
-            <button type='button' onClick={() => removeIngredient(index)}>
+            <button type='button' aria-label={`Remove Ingredient ${index + 1}`}   onClick={() => removeIngredient(index)}>
               <CircleMinus color='#ed0c0c' />
             </button>
           </div>

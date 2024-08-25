@@ -2,14 +2,14 @@ import { cn } from '@/lib/utils';
 import { Heart } from 'lucide-react';
 import { likeRecipe } from '@/actions/like';
 type LikeButtonProps = {
-    likes: number;
-    hasLiked: boolean;
-    userId: string;
-    recipeId: string;
-    };
+  likes: number;
+  hasLiked: boolean;
+  userId: string;
+  recipeId: string;
+};
 function LikeButton({ likes, hasLiked, userId, recipeId }: LikeButtonProps) {
-    const likeRecipeWithInformation= likeRecipe.bind(null, recipeId, userId);
-    
+  const likeRecipeWithInformation = likeRecipe.bind(null, recipeId, userId);
+
   return (
     <form
       action={likeRecipeWithInformation}
@@ -21,7 +21,7 @@ function LikeButton({ likes, hasLiked, userId, recipeId }: LikeButtonProps) {
           hasLiked && 'text-red-500'
         )}
       >
-        <Heart className='w-6 h-6' fill={hasLiked ? '#ef4444' : ''} />
+        <Heart className='w-6 h-6' fill={hasLiked ? '#ef4444' : 'white'} />
       </button>
       <span>{likes}</span>
     </form>

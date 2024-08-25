@@ -25,6 +25,7 @@ WEBSITE: https://recipe-master-beta.vercel.app/
 - NextAuthV5 for Authentication
 - Prisma ORM with PostgreSQL
 - Zod for schema validation
+- Vitest and Playwright for testing
 - Deployment: Vercel
 
 Todo:

@@ -4,6 +4,7 @@ import { getRecipeById } from '@/data-access/recipes';
 import { assertAuthenticated } from '@/lib/session';
 import { notFound, redirect } from 'next/navigation';
 import EditRecipeForm from '@/components/EditRecipeForm';
+import DeleteRecipe from '@/components/DeleteRecipe';
 
 const idSchema = z.string().cuid();
 async function page({ params }: { params: { id: string } }) {
@@ -21,9 +22,10 @@ async function page({ params }: { params: { id: string } }) {
 
   return (
     <div className='bg-primary dark:bg-gray-900 min-h-screen flex items-center justify-center py-5'>
-      <div className='bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-3xl p-8'>
-        <h2 className='text-2xl font-bold mb-6 dark:text-white'>Edit Recipe</h2>
+      <div className='bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-3xl pt-8 pb-12'>
         <EditRecipeForm recipe={recipe} />
+        <hr className='border border-gray-400 dark:border-gray-700 my-6' />
+        <DeleteRecipe id={recipe.id} />
       </div>
     </div>
   );

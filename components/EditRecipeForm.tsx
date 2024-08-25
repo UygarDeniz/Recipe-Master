@@ -45,10 +45,10 @@ function EditRecipeForm({ recipe }: RecipeFormProps) {
   return (
     <form
       action={handleSubmit}
-      className='w-full max-w-2xl bg-white dark:bg-gray-800 shadow-md rounded-lg p-8 py-8'
+      className='w-full  p-8 py-8'
     >
       <h2 className='text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200'>
-        Create a New Recipe
+        Edit  Recipe
       </h2>
       <div className='mb-4'>
         <label
@@ -128,7 +128,7 @@ function EditRecipeForm({ recipe }: RecipeFormProps) {
       </div>
 
       <div className='text-center mt-20  '>
-        <FormButton variant='primary' formName='Create Recipe' />
+        <FormButton variant='primary' formName='Edit Recipe' />
       </div>
     </form>
   );

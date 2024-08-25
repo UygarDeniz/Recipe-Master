@@ -14,7 +14,7 @@ type RecipeCategory = keyof typeof CategoryColors;
 
 function RecipeCategory({ category }: { category: RecipeCategory }) {
   return (
-    <div className={cn('px-4 py-1 rounded-xl text-white inline-block ', CategoryColors[category])}>
+    <div data-testid="recipe-category" className={cn('px-4 py-1 rounded-xl text-white inline-block ', CategoryColors[category])}>
       {category.toLowerCase().charAt(0).toLocaleUpperCase() + category.toLowerCase().slice(1)}
     </div>
   );

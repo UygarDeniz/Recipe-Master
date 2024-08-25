@@ -14,7 +14,7 @@ type RecipeCardProps = {
 
 export default function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <div className='bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-all shadow-md overflow-hidden hover:shadow-lg duration-500'>
+    <div  className='bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-all shadow-md overflow-hidden hover:shadow-lg duration-500'>
       <Link href={`/recipes/${recipe.id}`}>
         <div className='relative'>
           <Image
@@ -22,10 +22,11 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             alt={recipe.title}
             width={400}
             height={300}
-            className='w-full h-48 object-cover'
+            className='w-full  h-48 object-cover'
+            priority
           />
         </div>
-        <div className='p-4'>
+        <div className='p-4' data-testid="recipe-card-details">
           <div className='mb-2 flex justify-between items-center'>
             <RecipeCategory category={recipe.category} />
 
@@ -37,7 +38,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           <h3 className='text-lg font-semibold dark:text-white'>
             {recipe.title}
           </h3>
-          <p className='text-gray-600 dark:text-gray-400'>
+          <p className='text-gray-600 dark:text-gray-400' >
             {recipe.description && recipe.description.length > 30
               ? recipe.description.slice(0, 30)
               : recipe.description}

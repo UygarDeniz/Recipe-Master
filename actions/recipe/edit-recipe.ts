@@ -13,6 +13,7 @@ export type State = {
     category?: string[];
     ingredients?: string[];
     instructions?: string[];
+    imageURL?: string[];
   };
 };
 
@@ -26,6 +27,7 @@ export async function editRecipe(
   const category = formData.get('category') as RecipeCategory;
   const ingredients = JSON.parse(formData.get('ingredients') as string);
   const instructions = JSON.parse(formData.get('instructions') as string);
+  const imageURL = formData.get('image-url') as string;
 
   const user = await assertAuthenticated();
 
@@ -36,6 +38,7 @@ export async function editRecipe(
       category,
       ingredients,
       instructions,
+      imageURL,
     });
 
     if (!validatedData.success) {
@@ -94,7 +97,7 @@ export async function editRecipe(
   } catch (error) {
     console.error(error);
     return {
-      message: 'Failed to create recipe',
+      message: 'Failed to update recipe',
     };
   }
 }

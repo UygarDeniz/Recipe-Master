@@ -31,6 +31,7 @@ function EditRecipeForm({ recipe }: RecipeFormProps) {
     try {
       const response = await editRecipeWithRecipeId(formData);
       setErrors({ message: response.message, errors: response.errors });
+      console.log(response);
       if (response.message === 'Recipe updated successfully!') {
         toast.success(response.message);
         router.push(`/recipes/${recipe.id}`);
@@ -43,12 +44,9 @@ function EditRecipeForm({ recipe }: RecipeFormProps) {
   };
 
   return (
-    <form
-      action={handleSubmit}
-      className='w-full  p-8 py-8'
-    >
+    <form action={handleSubmit} className='w-full  p-8 py-8'>
       <h2 className='text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200'>
-        Edit  Recipe
+        Edit Recipe
       </h2>
       <div className='mb-4'>
         <label
@@ -107,6 +105,29 @@ function EditRecipeForm({ recipe }: RecipeFormProps) {
       )}
       <hr className='my-6 border-gray-300 dark:border-gray-600' />
 
+      <div className='mt-10'>
+        <div className='flex space-x-4 items-center mb-4'>
+          <label
+            htmlFor='image-url'
+            className='block text-xl font-semibold  text-gray-700 dark:text-gray-300'
+          >
+            Image URL
+          </label>
+          <p className='text-gray-500 dark:text-gray-400'>
+            (Image URL must be from images.pexels.com)
+          </p>
+        </div>
+        <input
+          type='text'
+          id='image-url'
+          name='image-url'
+          className='mt-1 block w-full p-2 border border-gray-300 focus:outline-orange-500 rounded-md shadow-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white '
+          defaultValue={recipe.image || ''}
+        />
+        {errors?.errors?.imageURL && (
+          <FormError message={errors.errors.imageURL[0]} />
+        )}
+      </div>
       <div className='mt-10 '>
         <label
           htmlFor='category'
